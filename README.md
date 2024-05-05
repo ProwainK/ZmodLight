@@ -1,4 +1,4 @@
-# ZmodLight
+# Zmodlight
 
 ![](https://i.imgur.com/AoHrDQW.png)
 
