@@ -16,15 +16,18 @@ end
 
 SL_CustomPrefs.Get = function()
 	 -- emojis are our lingua franca for the 21st century
-	local visualStyleChoices = { "❤", "↖", "🐻", "🦆", "😺", "🎃", "🌈", "⭐", "🤔", "🌀" }
-	local visualStyleValues  = { "Hearts", "Arrows", "Bears", "Ducks", "Cats", "Spooky", "Gay", "Stars", "Thonk", "Technique" }
+	--local visualStyleChoices = { "❤", "↖", "🐻", "🦆", "😺", "🎃", "🌈", "⭐", "🤔", "🌀" }
+	--local visualStyleValues  = { "Hearts", "Arrows", "Bears", "Ducks", "Cats", "Spooky", "Gay", "Stars", "Thonk", "Technique" }
+	local visualStyleChoices = { "❤" }
+	local visualStyleValues  = { "Hearts" }
+
 
 	local year = Year()
 	local month = MonthOfYear()+1
 	local day = DayOfMonth()
 	local today = year * 10000 + month * 100 + day
 
-	if today >= 20230619 then
+	--[[if today >= 20230619 then
 		visualStyleChoices[#visualStyleChoices+1] = "😈"
 		visualStyleValues[#visualStyleValues+1] = "SRPG7"
 	else
@@ -35,7 +38,7 @@ SL_CustomPrefs.Get = function()
 			visualStyleChoices[#visualStyleChoices+1] = "😈"
 			visualStyleValues[#visualStyleValues+1] = "SRPG7"
 		end
-	end
+	end--]]
 
 	return {
 		AllowFailingOutOfSet =
@@ -89,7 +92,7 @@ SL_CustomPrefs.Get = function()
 		},
 		VisualStyle =
 		{
-			Default = "Technique",
+			Default = "Hearts",
 			Choices = visualStyleChoices,
 			Values  = visualStyleValues
 		},
