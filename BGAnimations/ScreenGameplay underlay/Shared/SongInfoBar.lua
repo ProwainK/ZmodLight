@@ -38,7 +38,7 @@ return Def.ActorFrame{
 		CurrentSongChangedMessageCommand=function(self)
 
         --if P2_mods.NoteFieldOffsetY < -35 then
-          self:y(_screen.cy * 2 - 40)
+          --self:y(_screen.cy * 2 - 40)
         --end
 
 			local song = GAMESTATE:GetCurrentSong()
