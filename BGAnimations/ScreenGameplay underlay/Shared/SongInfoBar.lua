@@ -7,13 +7,13 @@ return Def.ActorFrame{
 	InitCommand=function(self) self:xy(_screen.cx, 20) end,
 
 	-- border
-	Def.Quad{ InitCommand=function(self) self:zoomto(w, h) end },
+	--[[Def.Quad{ InitCommand=function(self) self:zoomto(w, h) end },
 	Def.Quad{ InitCommand=function(self) self:zoomto(w-4, h-4):diffuse(0,0,0,1) end },
 
 	Def.SongMeterDisplay{
 		StreamWidth=(w-4),
 		Stream=Def.Quad({ InitCommand=function(self) self:zoomy(18):diffuse(GetCurrentColor(true)) end })
-	},
+	},--]]
 
 	-- Song Title
 	LoadFont("Common Normal")..{
