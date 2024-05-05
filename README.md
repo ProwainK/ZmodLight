@@ -9,7 +9,7 @@ Lightweight hopefully (〃∀〃)
 
 This fork is worked on myself.
 
-Shout out to ITG Community:
+Shout out to ITG Communities:
 
 * Zarzob, Zankoku and Zmod Team
 * Simple Love
