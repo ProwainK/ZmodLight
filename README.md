@@ -1,6 +1,6 @@
 # Zmodlight
 
-![](https://i.imgur.com/NsIUii3.png)
+![](https://i.imgur.com/V2PyZtz.png)
 
 A fork of Simply Love Zmod, require ITGmania.
 Lightweight hopefully (〃∀〃)
