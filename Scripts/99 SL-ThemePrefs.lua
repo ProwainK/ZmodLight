@@ -355,6 +355,12 @@ SL_CustomPrefs.Get = function()
 			Default = false,
 			Choices = { THEME:GetString("ThemePrefs", "On"), THEME:GetString("ThemePrefs", "Off") },
 			Values = { true, false }
+		},
+		SingleUI =
+		{
+			Default = true,
+			Choices = { THEME:GetString("ThemePrefs", "On"), THEME:GetString("ThemePrefs", "Off") },
+			Values = { true, false }
 		}
 	}
 end
