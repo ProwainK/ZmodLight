@@ -25,12 +25,9 @@ local styletype = ToEnumShortString(GAMESTATE:GetCurrentStyle():GetStyleType())
 
 -- scores are not aligned symmetrically around screen.cx for aesthetic reasons
 -- and this is the cause of many code-induced headaches
-local p1_pos_y = 56
-if ThemePrefs.Get("SingleUI") == true then
-  p1_pos_y = _screen.cy+18
-end
 local pos = {
-  [PLAYER_1] = { x=(_screen.cx - clamp(_screen.w, 640, 854)/4.3),  y=p1_pos_y },
+	--[PLAYER_1] = { x=(_screen.cx - clamp(_screen.w, 640, 854)/4.3),  y=56 },
+  [PLAYER_1] = { x=(_screen.cx - clamp(_screen.w, 640, 854)/4.3),  y=_screen.cy+18 },
 	[PLAYER_2] = { x=(_screen.cx + clamp(_screen.w, 640, 854)/2.75), y=56 },
 }
 

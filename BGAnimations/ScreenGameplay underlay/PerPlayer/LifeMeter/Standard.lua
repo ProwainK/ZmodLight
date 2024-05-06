@@ -21,7 +21,14 @@ end
 
 local meter = Def.ActorFrame{
 
-	InitCommand=function(self) self:y(20):SetUpdateFunction(Update):visible(false) end,
+	--InitCommand=function(self) self:y(20):SetUpdateFunction(Update):visible(false) end,
+  InitCommand=function(self)
+    local metery = 20
+    if ThemePrefs.Get("SingleUI") == true then
+      metery = _screen.cy-18
+    end
+    self:y(metery):SetUpdateFunction(Update):visible(false);
+  end,
 	OnCommand=function(self) self:finishtweening():visible(true) end,
 
 	-- frame

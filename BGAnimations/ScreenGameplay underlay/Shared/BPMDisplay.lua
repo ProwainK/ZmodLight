@@ -1,3 +1,8 @@
+-- Zmodlight Single UI
+if ThemePrefs.Get("SingleUI") == true then
+  return
+end
+
 local Players = GAMESTATE:GetHumanPlayers()
 local MusicRate = SL.Global.ActiveModifiers.MusicRate
 

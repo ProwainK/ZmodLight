@@ -4,7 +4,11 @@ local _x = _screen.cx + (player==PLAYER_1 and -1 or 1) * SL_WideScale(292.5, 342
 
 return Def.ActorFrame{
 	InitCommand=function(self)
-		self:xy(_x, 56)
+    if ThemePrefs.Get("SingleUI") == true then
+      self:xy(_x, _screen.cy+18)
+    else
+      self:xy(_x, 56)
+    end
 	end,
 
 

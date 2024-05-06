@@ -45,7 +45,14 @@ end
 -- UI elements shared by both players
 t[#t+1] = LoadActor("./Shared/VersusStepStatistics.lua")
 t[#t+1] = LoadActor("./Shared/Header.lua")
-t[#t+1] = LoadActor("./Shared/SongInfoBar.lua") -- song title and progress bar
+
+--t[#t+1] = LoadActor("./Shared/SongInfoBar.lua") -- song title and progress bar
+-- Zmodlight Single UI
+if ThemePrefs.Get("SingleUI") == true then
+  t[#t+1] = LoadActor("./Shared/SongInfoBarSingleUI.lua")
+else
+  t[#t+1] = LoadActor("./Shared/SongInfoBar.lua")
+end
 
 -- per-player UI elements
 for player in ivalues(Players) do
