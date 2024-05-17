@@ -10,17 +10,37 @@ local SongMeterH = 12
 local SongMeterX = _screen.cx + (1) * SL_WideScale(238, 288)
 
 -- var for hide song title
---local player = ...
---local mods = SL[ToEnumShortString(player)].ActiveModifiers
+local StepStatisticsNow = false
+local Players = GAMESTATE:GetHumanPlayers()
+for player in ivalues(Players) do
+  if SL[ToEnumShortString(player)].ActiveModifiers.DataVisualizations == "Step Statistics" then
+    StepStatisticsNow = true
+    break
+  end
+end
+
+local SongMeterFrameY = _screen.cy+38
+local SongMeterY = 12
+local SongTitleY = 38
+local SongArtistY = _screen.cy+98
+local SongJacketY = _screen.cy-22
+
+if StepStatisticsNow == true then
+  SongMeterFrameY = _screen.cy+38 -- _screen.cy+38
+  SongMeterY = -68 -- 12
+  SongTitleY = -42 -- 38
+  SongArtistY = _screen.cy+18 -- _screen.cy+98
+  SongJacketY = _screen.cy-102 -- _screen.cy-22
+end
 
 -- Song Completion Meter
 t[#t+1] = Def.ActorFrame{
 	Name="SongMeter",
-	InitCommand=function(self) self:y(_screen.cy+38) end,
+	InitCommand=function(self) self:y(SongMeterFrameY) end,
 
 	-- border
-	Def.Quad{ InitCommand=function(self) self:xy(SongMeterX, 12):zoomto(SongMeterW+4, SongMeterH+4) end },
-	Def.Quad{ InitCommand=function(self) self:xy(SongMeterX, 12):zoomto(SongMeterW, SongMeterH):diffuse(0,0,0,1) end },
+	Def.Quad{ InitCommand=function(self) self:xy(SongMeterX, SongMeterY):zoomto(SongMeterW+4, SongMeterH+4) end },
+	Def.Quad{ InitCommand=function(self) self:xy(SongMeterX, SongMeterY):zoomto(SongMeterW, SongMeterH):diffuse(0,0,0,1) end },
 
   -- Song Meter
 	Def.SongMeterDisplay{
@@ -28,7 +48,7 @@ t[#t+1] = Def.ActorFrame{
 		Stream=Def.Quad({
       InitCommand=function(self)
         self:x(SongMeterX-68):horizalign("left"); -- 76 - 4 * 2 = 68?
-        self:y(12):zoomy(SongMeterH):diffuse(GetCurrentColor(true));
+        self:y(SongMeterY):zoomy(SongMeterH):diffuse(GetCurrentColor(true));
       end
     })
 	},
@@ -36,7 +56,7 @@ t[#t+1] = Def.ActorFrame{
 	-- Song Title
 	LoadFont("Common Normal")..{
 		Name="SongTitle",
-		InitCommand=function(self) self:xy(SongMeterX, 38):zoom(0.8):shadowlength(0.6):maxwidth(_screen.w/2.5 - 10) end,
+		InitCommand=function(self) self:xy(SongMeterX, SongTitleY):zoom(0.8):shadowlength(0.6):maxwidth(_screen.w/2.5 - 10) end,
 		CurrentSongChangedMessageCommand=function(self)
 
         --if P2_mods.NoteFieldOffsetY < -35 then
@@ -54,7 +74,7 @@ t[#t+1] = Def.ActorFrame{
 -- Song Artist
 t[#t+1] = LoadFont("Common Normal")..{
 		Name="SongArtist",
-		InitCommand=function(self) self:xy(SongMeterX, _screen.cy+98):zoom(0.8):shadowlength(0.6):maxwidth(_screen.w/2.5 - 10) end,
+		InitCommand=function(self) self:xy(SongMeterX, SongArtistY):zoom(0.8):shadowlength(0.6):maxwidth(_screen.w/2.5 - 10) end,
 		CurrentSongChangedMessageCommand=function(self)
 			local song = GAMESTATE:GetCurrentSong()
 			self:settext( song:GetDisplayArtist() or "" )
@@ -64,7 +84,7 @@ t[#t+1] = LoadFont("Common Normal")..{
 -- Song Jacket
 t[#t+1] = Def.ActorFrame{
 		Name="SongJacket",
-		InitCommand=function(self) self:xy(SongMeterX, _screen.cy-22):shadowlength(0.6) end,
+		InitCommand=function(self) self:xy(SongMeterX, SongJacketY):shadowlength(0.6) end,
 
 	-- border
 	Def.Quad{ InitCommand=function(self) self:zoomto(SongMeterW+4, SongMeterW+4) end },
