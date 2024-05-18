@@ -74,12 +74,12 @@ af.InitCommand=function(self)
 	self:x( SL_WideScale(152,204) * (player==PLAYER_1 and -1 or 1))
 
 	if NoteFieldIsCentered and IsUsingWideScreen() then
-		self:x( 42 * (player==PLAYER_1 and -1 or 1))
+		self:x( 46 * (player==PLAYER_1 and -1 or 1))
 	end
 
 	-- adjust for smaller panes when ultrawide and both players joined
 	if IsUltraWide and #GAMESTATE:GetHumanPlayers() > 1 then
-		self:x( 42 * (player==PLAYER_1 and 1 or -1))
+		self:x( 46 * (player==PLAYER_1 and 1 or -1))
 	end
 end
 
@@ -93,6 +93,7 @@ for index, window in ipairs(TNS.Types) do
 			self:zoom(0.5)
 			self:y((index-1)*row_height - 40)
 			self:halign( PlayerNumber:Reverse()[player] )
+	    self:shadowlength(1)
 
 			-- flip alignment when ultrawide and both players joined
 			if IsUltraWide and #GAMESTATE:GetHumanPlayers() > 1 then
@@ -167,6 +168,7 @@ for index, window in ipairs(TNS.Types) do
 				InitCommand=function(self)
 					self:zoom(0.833):maxwidth(72)
 					self:halign( PlayerNumber:Reverse()[player] )
+	        self:shadowlength(1)
 					if player==PLAYER_1 then
 						self:x( 80 + (digits-4)*16)
 					else
