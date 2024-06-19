@@ -1,19 +1,23 @@
 local player = ...
 
-if SL.Global.GameMode == "Casual" or GAMESTATE:IsCourseMode() then return end
+if SL.Global.GameMode == "Casual" then return end
 
 local optionslist = GetPlayerOptionsString(player)
 
 local af = Def.ActorFrame{
   InitCommand = function(self)
-      self:xy(GetNotefieldX(player), SCREEN_HEIGHT/4*1.3)
+    self:diffusealpha(1):xy(GetNotefieldX(player), SCREEN_HEIGHT/4*1.3)
   end,
   OnCommand=function(self)
     self:sleep(5):decelerate(0.5):diffusealpha(0)
-  end
+  end,
+  PlayerOptionsChangedMessageCommand=function(self, params)
+    if params.Player ~= player then return false end
+    self:stoptweening():playcommand("Init"):queuecommand("On")
+  end,
 }
 
-af[#af+1] = LoadFont("Common Normal")..{
+af[#af+1] = LoadFont(ThemePrefs.Get("ThemeFont") .. " Normal")..{
   Text=optionslist,
   InitCommand=function(self)
     self:y(15)
@@ -22,6 +26,11 @@ af[#af+1] = LoadFont("Common Normal")..{
     self:shadowcolor(Color.Black)
     self:shadowlength(1)
   end,
+  PlayerOptionsChangedMessageCommand=function(self, params)
+    if params.Player ~= player then return false end
+    optionslist = GetPlayerOptionsString(player, "ModsLevel_Song")
+    self:settext(optionslist)
+  end
 }
 
 -- For tournament packs that have No CMOD rules 
@@ -55,7 +64,7 @@ if tourneyPack
 			},
 			Def.BitmapText {
 				Name="CModWarningText",
-				Font="Common Normal",
+				Font=ThemePrefs.Get("ThemeFont") .. " Normal",
 				Text="CMod On",
 				InitCommand=function(self)
 					self:zoom(1.5)

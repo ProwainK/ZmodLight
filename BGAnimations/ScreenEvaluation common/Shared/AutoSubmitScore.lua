@@ -393,6 +393,45 @@ end
 
 local af = Def.ActorFrame {
 	Name="AutoSubmitMaster",
+	OnCommand=function(self)
+		-- local overlay = SCREENMAN:GetTopScreen():GetChild("Overlay"):GetChild("ScreenEval Common")
+		-- overlay:GetChild("AutoSubmitMaster"):GetChild("EventOverlay"):visible(true)
+		-- overlay:queuecommand("DirectInputToEventOverlayHandler")
+
+		-- local eventAf = overlay:GetChild("AutoSubmitMaster"):GetChild("EventOverlay"):GetChild("P1EventAf")
+		-- eventAf:playcommand("Show", {data={
+		-- 	["rpg"] = {
+		-- 		["name"] = "SRPG8",
+		-- 		["result"] = "score-added",
+		-- 		["rpgLeaderboard"] = {
+		-- 			{
+		-- 				["rank"] = 1,
+		-- 				["name"] = "Player1",
+		-- 				["score"] = 9900,
+		-- 				["date"] ="2024-05-05 1:20:30",
+		-- 				["isRival"] = false,
+		-- 				["isSelf"] = false,
+		-- 			},
+		-- 			{
+		-- 				["rank"] = 2,
+		-- 				["name"] = "Player2",
+		-- 				["score"] = 9800,
+		-- 				["date"] ="2024-05-05 1:20:30",
+		-- 				["isRival"] = true,
+		-- 				["isSelf"] = false,
+		-- 			},
+		-- 			{
+		-- 				["rank"] = 3,
+		-- 				["name"] = "Player3",
+		-- 				["score"] = 9700,
+		-- 				["date"] ="2024-05-05 1:20:30",
+		-- 				["isRival"] = false,
+		-- 				["isSelf"] = true,
+		-- 			}
+		-- 		}
+		-- 	}
+		-- }})
+	end,
 	RequestResponseActor(17, 50)..{
 		OnCommand=function(self)
 			local sendRequest = false
@@ -473,7 +512,7 @@ if ThemePrefs.Get("RainbowMode") then
 	textColor = Color.Black
 end
 
-af[#af+1] = LoadFont("Common Normal").. {
+af[#af+1] = LoadFont(ThemePrefs.Get("ThemeFont") .. " Normal").. {
 	Name="P1SubmitText",
 	Text="",
 	InitCommand=function(self)
@@ -495,7 +534,7 @@ af[#af+1] = LoadFont("Common Normal").. {
 	end
 }
 
-af[#af+1] = LoadFont("Common Normal").. {
+af[#af+1] = LoadFont(ThemePrefs.Get("ThemeFont") .. " Normal").. {
 	Name="P2SubmitText",
 	Text="",
 	InitCommand=function(self)

@@ -14,3 +14,10 @@ Shout out to ITG Communities:
 * Zarzob, Zankoku and Zmod Team
 * Simple Love
 * ITGmania
+
+# Additional Contributors
+
+* sorae
+* MegaSphere
+* @florczakraf
+* @HURG-IIDX
