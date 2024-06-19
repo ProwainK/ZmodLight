@@ -1,5 +1,5 @@
 local songs = {
-	Hearts = "feel",
+	Hearts = "",
 	Arrows = "cloud break",
 	Bears  = "crystalis",
 	Ducks  = "Xuxa fami VRC6",
